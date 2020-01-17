@@ -1,3 +1,4 @@
+
 package com.knowingwhere.brainvita;
 
 import java.util.ArrayList;
@@ -10,9 +11,6 @@ import static java.util.Arrays.asList;
 public class Board implements StepOperation {
     private static Board board = null;
     private Space[][] spaces;
-    private Board() {
-        spaces = new Space[7][7];
-    }
     private int marbleCount = 0;
 
     private static List<BrainvitaStep> allOperations = new ArrayList<>();
@@ -45,7 +43,18 @@ public class Board implements StepOperation {
         }
     }
 
+    /**
+     * Private constructor
+     */
+    private Board() {
+        spaces = new Space[7][7];
+    }
 
+    /**
+     * Static creator method to create a board. This ensures that only one board is created within the
+     * lifecycle of the application
+     * @return singleton board
+     */
     public static Board createBoard() {
         if (board == null) {
             board = new Board();
@@ -65,6 +74,12 @@ public class Board implements StepOperation {
         marbleCount--;
     }
 
+    /**
+     * Perform the step on the current board
+     * @throws IllegalStateException if the step is invalid
+     * @throws RuntimeException if the step is not possible on current board
+     * @param step
+     */
     @Override
     public void applyStep(BrainvitaStep step) {
         if (!step.isValid()) {
@@ -82,6 +97,12 @@ public class Board implements StepOperation {
         marbleCount--;
     }
 
+    /**
+     * Rolls back the step on the current board
+     * @throws IllegalStateException if the step is invalid
+     * @throws RuntimeException if the rollback is not possible on current board
+     * @param step
+     */
     @Override
     public void rollbackStep(BrainvitaStep step) {
         if (!step.isValid()) {
@@ -151,6 +172,10 @@ public class Board implements StepOperation {
         throw new RuntimeException("Bad coordinates in step");
     }
 
+    /**
+     * Find all possible steps that can be performed on the current board.
+     * @return List of all possible steps from the current state of the board
+     */
     public List<BrainvitaStep> getAllPossibleOperations() {
         List<BrainvitaStep> allOperationsForCurrentState = new ArrayList<>();
         for (BrainvitaStep step : allOperations) {
@@ -162,6 +187,10 @@ public class Board implements StepOperation {
         return allOperationsForCurrentState;
     }
 
+    /**
+     * Returns the total number of marbles on the board at that moment
+     * @return total number of marbles on the board
+     */
     public int getMarbleCount() {
         return marbleCount;
     }

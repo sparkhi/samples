@@ -14,6 +14,11 @@ public class Coordinate {
     private int x;
     private int y;
 
+    /**
+     * Constructor
+     * @param x 0 based value along horizontal axis increasing from left to right
+     * @param y 0 based value along vertical axis increasing from top to bottom
+     */
     public Coordinate(int x, int y) {
         this.x = x;
         this.y = y;

@@ -6,6 +6,9 @@ import java.util.Map;
 
 import static java.util.Arrays.asList;
 
+/**
+ * Represents a step for the brainvita game.
+ */
 public class BrainvitaStep extends Step {
 
     private static Map<Integer, List<Integer>> validPlaces = new HashMap<>();
@@ -20,13 +23,18 @@ public class BrainvitaStep extends Step {
     }
 
 
+    /**
+     * Constructor
+     * @param from starting coordinate of the step
+     * @param to ending coordinate of the step
+     */
     public BrainvitaStep(Coordinate from, Coordinate to) {
         super(from, to);
     }
 
     /**
-     * In addition to the step validity rules, this class takes into account the specific layout of brainvita to exclude invalid coordinates
-     * @return whether the step operation is valid
+     * Returns whether the step is valid within the current layout of the board
+     * @return whether the step can be legally performed in the context of current board layout
      */
     public boolean isValid() {
         if (super.isValid() == false) {
