@@ -32,7 +32,7 @@ object BerlinClock {
     )
   }
 
-  //In the last row with 4 lamps every lamp represents 1 minute.
+  //In the last row with 4 lamps, every lamp represents 1 minute.
   def bottomMinutes(num: Int) = {
     val on = num - num / 5 * 5
     "Y" * on + "O" * (4 - on)
